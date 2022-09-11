@@ -4,6 +4,7 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
+from selenium.webdriver.common.alert import Alert
 
 try:
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
@@ -18,7 +19,10 @@ try:
     checks = driver.find_element(By.XPATH, "//input[@id='checkBoxOption1']")
     checks.click()
     #driver.find_element(By.ID, "openwindow").click()
-
+    driver.find_element(By.XPATH, "//input[@id='name']").send_keys("Shakeer")
+    driver.find_element(By.XPATH, "//input[@id='alertbtn']").click()
+    alert = Alert(driver)
+    alert.accept()
 except Exception as e:
     print(e)
 else:
